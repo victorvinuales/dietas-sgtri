@@ -1,1 +1,0 @@
-# dietas-sgtri
