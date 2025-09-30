@@ -72,7 +72,7 @@ git quick
 
 yaml
 Copiar código
-👉 Hace `add + commit "update" + push` en un solo paso.
+👉 Hace `add + commit "update" + push` en un solo paso. 
 
 ---
 
