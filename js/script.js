@@ -34,7 +34,7 @@ function downloadPDF() {
 
   doc.setFontSize(16);
   doc.text("RESULTADOS", 20, 20);
-  doc.addImage('https://sarteco.org/wp-content/uploads/2017/07/Logo-UEx.jpg', 'PNG', 20, 30, 40, 40);
+  doc.addImage('img/logo.jpg', 'PNG', 20, 30, 40, 40);
   doc.setFontSize(12);
   doc.text(resumenText, 20, 80);
   doc.save('resultados.pdf');
