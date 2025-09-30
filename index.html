@@ -1,12 +1,58 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página de ejemplo</title>
+<meta charset="UTF-8">
+<title>Formulario de ejemplo</title>
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <h1>Bienvenido a mi página de ejemplo</h1>
-    <p>Este es un texto de ejemplo en una plantilla HTML básica.</p>
+
+<!-- Página 1 -->
+<div id="page1" class="page active">
+  <h2>Página 1: Datos personales</h2>
+  <label>Nombre:
+    <input type="text" id="nombre">
+  </label>
+  <label>Profesión:
+    <select id="profesion">
+      <option value="Ingeniero">Ingeniero</option>
+      <option value="Médico">Médico</option>
+      <option value="Profesor">Profesor</option>
+      <option value="Abogado">Abogado</option>
+    </select>
+  </label>
+  <label>Fecha de nacimiento:
+    <input type="date" id="fechaNacimiento">
+  </label>
+  <button onclick="nextPage(1)">Siguiente</button>
+</div>
+
+<!-- Página 2 -->
+<div id="page2" class="page">
+  <h2>Página 2: Datos económicos</h2>
+  <label>Sueldo anual (€):
+    <input type="number" id="sueldo">
+  </label>
+  <label>Número de miembros de la familia:
+    <input type="number" id="miembros">
+  </label>
+  <button onclick="prevPage(2)">Anterior</button>
+  <button onclick="nextPage(2)">Siguiente</button>
+</div>
+
+<!-- Página 3 -->
+<div id="page3" class="page">
+  <h2>RESULTADOS</h2>
+  <div id="result">
+    <img src="https://via.placeholder.com/100" alt="Logo">
+    <p id="resumen"></p>
+    <button onclick="downloadPDF()">Descargar PDF</button>
+  </div>
+  <button onclick="prevPage(3)">Anterior</button>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="js/script.js"></script>
+
 </body>
 </html>
