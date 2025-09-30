@@ -78,7 +78,7 @@ Copiar código
 
 ### 📌 Alias flexible con mensaje
 Configúralo una vez:
-git config --global alias.quickm '!f() { git add . && git commit -m "$1" && git push origin main; }; f'
+git config --global alias.quickm '!f() { git add . && git commit -m "$*" && git push origin main; }; f'
 
 Uso:
 git quickm "MENSAJE" 
