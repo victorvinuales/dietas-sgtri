@@ -1,58 +1,126 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-<meta charset="UTF-8">
-<title>Formulario de ejemplo</title>
-<link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SGTRI - Liquidación de Dietas y Desplazamientos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style-page.css" />
+  <link rel="stylesheet" href="css/style-form.css" />
+
+  <script src="js/main.js" defer></script>
+  <script src="js/formLogic.js" defer></script>
 </head>
+
 <body>
+  <!-- 🔹 Encabezado principal -->
+  <header class="Encabezado">
+    <img src="assets/img/logo-uex-blanco.png" alt="Logo UEx" class="logo" />
+    <h1>SGTRI - Liquidación de Dietas y Desplazamientos</h1>
+  </header>
 
-<!-- Página 1 -->
-<div id="page1" class="page active">
-  <h2>Página 1: Datos personales</h2>
-  <label>Nombre:
-    <input type="text" id="nombre">
-  </label>
-  <label>Profesión:
-    <select id="profesion">
-      <option value="Ingeniero">Ingeniero</option>
-      <option value="Médico">Médico</option>
-      <option value="Profesor">Profesor</option>
-      <option value="Abogado">Abogado</option>
-    </select>
-  </label>
-  <label>Fecha de nacimiento:
-    <input type="date" id="fechaNacimiento">
-  </label>
-  <button onclick="nextPage(1)">Siguiente</button>
-</div>
+  <!-- 🔹 Contenedor único para todas las secciones -->
+  <div class="form-sections-wrapper">
 
-<!-- Página 2 -->
-<div id="page2" class="page">
-  <h2>Página 2: Datos económicos</h2>
-  <label>Sueldo anual (€):
-    <input type="number" id="sueldo">
-  </label>
-  <label>Número de miembros de la familia:
-    <input type="number" id="miembros">
-  </label>
-  <button onclick="prevPage(2)">Anterior</button>
-  <button onclick="nextPage(2)">Siguiente</button>
-</div>
+    <!-- Sección 1: Datos del beneficiario -->
+    <section class="form-section">
+      <div class="section-title">
+        Datos del beneficiario
+        <span class="toggle-section">−</span>
+      </div>
+      <div class="section-content-wrapper">
+        <div class="section-content">
+          <form id="form-beneficiario">
+            <div class="form-group">
+              <label for="nombre-benef">Nombre del beneficiario</label>
+              <input type="text" id="nombre-benef" name="nombre-benef" required />
+            </div>
+            <div class="form-group">
+              <label for="dni">DNI / Pasaporte</label>
+              <input type="text" id="dni" name="dni" required />
+            </div>
+            <div class="form-group">
+              <label for="entidad">Entidad contratante</label>
+              <input type="text" id="entidad" name="entidad" value="Universidad de Extremadura" />
+            </div>
+            <div class="form-group">
+              <label for="categoria">En calidad de</label>
+              <select id="categoria" name="categoria" required></select>
+            </div>
+            <div class="form-group">
+              <label for="tipo-pago">Pago en</label>
+              <select id="tipo-pago" name="tipo-pago" required></select>
+            </div>
+            <div class="form-group">
+              <label for="iban">IBAN</label>
+              <input type="text" id="iban" name="iban" />
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
 
-<!-- Página 3 -->
-<div id="page3" class="page">
-  <h2>RESULTADOS</h2>
-  <div id="result">
-    <img src="img/logo.jpg" alt="Logo">
-    <p id="resumen"></p>
-    <button onclick="downloadPDF()">Descargar PDF</button>
+    <!-- Sección 2: Datos del proyecto -->
+    <section class="form-section">
+      <div class="section-title">
+        Datos del proyecto
+        <span class="toggle-section">−</span>
+      </div>
+      <div class="section-content-wrapper">
+        <div class="section-content">
+          <form id="form-proyecto">
+            <div class="form-group">
+              <label for="tipoProyecto">Tipo de proyecto:</label>
+              <select id="tipoProyecto" name="tipoProyecto">
+                <option value="">-- Selecciona --</option>
+              </select>
+
+              <!-- Texto informativo -->
+              <p id="infoDecreto" style="margin-top:10px; font-size:0.95em; color:#444;">
+                Los cálculos se efectuarán en base al Decreto 42/2005 (Junta de Extremadura).
+                <a href="https://doe.juntaex.es/otrosFormatos/html.php?xml=2025040078&anio=2025&doe=1010o"
+                  target="_blank" rel="noopener noreferrer">
+                  Ver Decreto
+                </a>
+              </p>
+            </div>
+
+            <!-- Contenedor para los proyectos -->
+            <div id="proyectos-container">
+              <!-- Template para un proyecto -->
+              <div class="proyecto-grupo" data-proyecto-id="1">
+                <div class="form-group">
+                  <label for="responsable-1">Responsable: D./D.ª</label>
+                  <input type="text" id="responsable-1" name="responsable-1" required />
+                </div>
+                <div class="form-group">
+                  <label for="organica-1">Orgánica</label>
+                  <input type="text" id="organica-1" name="organica-1" 
+                         pattern="^[0-9A-Za-z]{2}(\.[0-9A-Za-z]{2}){0,4}$" 
+                         placeholder="XX.XX.XX.XX.XX" required />
+                </div>
+                <div class="form-group">
+                  <label for="referencia-1">Referencia del proyecto</label>
+                  <input type="text" id="referencia-1" name="referencia-1" required />
+                </div>
+                <button type="button" class="btn-eliminar-proyecto" style="display: none;">
+                  Eliminar proyecto
+                </button>
+              </div>
+            </div>
+
+            <!-- Botón para añadir nuevo proyecto -->
+            <button type="button" id="btn-add-proyecto" class="btn-add-proyecto">
+              Añadir otro proyecto
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
   </div>
-  <button onclick="prevPage(3)">Anterior</button>
-</div>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<script src="js/script.js"></script>
-
 </body>
+
 </html>
